@@ -1,0 +1,21 @@
+.langs-dropdown {
+  @apply relative;
+}
+
+.langs-dropdown__toggle {
+  @apply font-bold p-2 uppercase;
+
+  @apply font-light p-2  text-gray-800;
+  @apply dark:text-white;
+}
+
+.langs-dropdown__menu {
+  @apply absolute bg-gray-100 top-9 flex flex-col rounded;
+  @apply dark:text-slate-400;
+}
+
+.langs-dropdown__menu-item {
+  @apply uppercase p-2 text-center rounded;
+  @apply hover:bg-gray-200;
+  @apply dark:text-gray-900;
+}

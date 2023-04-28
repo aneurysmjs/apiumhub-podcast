@@ -1,0 +1,7 @@
+.home {
+  @apply flex items-start justify-center h-full my-8;
+}
+
+.home__content {
+  @apply w-full md:w-9/12 mx-auto px-4 md:px-0;
+}

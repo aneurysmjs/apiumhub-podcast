@@ -1,0 +1,16 @@
+{
+  "name": "@apiumhub/podcast",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "lint": "eslint './src/**/*.{ts,tsx}'",
+    "stylelint-check": "stylelint-config-prettier-check",
+    "test": "pnpm -w t -- --selectProjects=\"podcast\""
+  },
+  "dependencies": {
+    "@apiumhub/hooks": "workspace:^",
+    "@apiumhub/utils": "workspace:^"
+  }
+}

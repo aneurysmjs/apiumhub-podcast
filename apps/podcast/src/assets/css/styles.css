@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .text-theme {
+    @apply text-gray-800 dark:text-white;
+  }
+
+  .text-theme-hover {
+    @apply hover:text-teal-400 dark:hover:text-sky-400;
+  }
+
+  .text-link-theme {
+    @apply text-teal-500 dark:text-sky-400;
+  }
+
+  .bg-theme {
+    @apply bg-white dark:bg-gray-900;
+  }
+
+  .text-error {
+    @apply text-red-500 dark:text-red-600;
+  }
+}

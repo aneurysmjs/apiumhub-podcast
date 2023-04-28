@@ -1,0 +1,16 @@
+{
+  "name": "@apiumhub/hooks",
+  "version": "1.0.0",
+  "exports": {
+    ".": {
+      "default": "./src/index.tsx"
+    }
+  },
+  "main": "src/index.tsx",
+  "scripts": {
+    "test": "pnpm -w t -- --selectProjects=\"hooks\""
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}
