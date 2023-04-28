@@ -2,11 +2,13 @@ import { legacy_createStore as createStore, combineReducers, applyMiddleware } f
 import { composeWithDevTools } from '@redux-devtools/extension';
 
 import middlewares from '@/store/middlewares';
+import { podcastReducer as podcast } from '@/store/modules/podcast/reducers';
 
 import { apiReducer as api } from './reducers';
 
 export const rootReducer = combineReducers({
   api,
+  podcast,
 });
 
 export default function configureStore() {
