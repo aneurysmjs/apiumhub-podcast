@@ -4,7 +4,7 @@
     "at-rule-no-unknown": [
       true,
       {
-        "ignoreAtRules": ["extends", "tailwind", "mixin", "include", "at-root", "layer"]
+        "ignoreAtRules": ["extends", "tailwind", "mixin", "include", "at-root", "layer", "apply"]
       }
     ],
     "block-no-empty": null,
