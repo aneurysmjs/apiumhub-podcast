@@ -26,6 +26,7 @@ describe('podcast-actions', () => {
     const { result } = renderHook(() => usePodcastActions(), { wrapper: Wrapper });
 
     expect(result.current).toHaveProperty('getPodcast');
+    expect(result.current).toHaveProperty('getPodcastDescription');
   });
 
   describe('getPodcast', () => {
@@ -35,6 +36,24 @@ describe('podcast-actions', () => {
       const { getPodcast } = result.current;
 
       getPodcast();
+
+      expect(mockDispatch).toHaveBeenCalledTimes(1);
+      expect(mockDispatch).toHaveBeenCalledWith(
+        expect.objectContaining({
+          payload: expect.any(Object),
+          type: expect.stringContaining('ASYNC_ACTION_TYPE'),
+        }),
+      );
+    });
+  });
+
+  describe('getPodcastDescription', () => {
+    it('should dispatch async action for fetching podcast', () => {
+      const { result } = renderHook(() => usePodcastActions(), { wrapper: Wrapper });
+
+      const { getPodcastDescription } = result.current;
+
+      getPodcastDescription('123');
 
       expect(mockDispatch).toHaveBeenCalledTimes(1);
       expect(mockDispatch).toHaveBeenCalledWith(

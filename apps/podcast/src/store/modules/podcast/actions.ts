@@ -4,7 +4,14 @@ import { useDispatch } from 'react-redux';
 import * as podcastService from '@/services/podcastService';
 import { ApiMetaType } from '@/shared/types';
 import { ASYNC_ACTION_TYPE } from '@/constants';
-import { GET_PODCAST_REQUEST, GET_PODCAST_SUCCESS, GET_PODCAST_FAILURE } from './types';
+import {
+  GET_PODCAST_REQUEST,
+  GET_PODCAST_SUCCESS,
+  GET_PODCAST_FAILURE,
+  GET_PODCAST_DESCRIPTION_REQUEST,
+  GET_PODCAST_DESCRIPTION_SUCCESS,
+  GET_PODCAST_DESCRIPTION_FAILURE,
+} from './types';
 
 // eslint-disable-next-line import/prefer-default-export
 export function usePodcastActions() {
@@ -23,5 +30,22 @@ export function usePodcastActions() {
     });
   }, [dispatch]);
 
-  return { getPodcast };
+  const getPodcastDescription = (id: string) => {
+    const candidatesMeta: ApiMetaType = {
+      types: [
+        GET_PODCAST_DESCRIPTION_REQUEST,
+        GET_PODCAST_DESCRIPTION_SUCCESS,
+        GET_PODCAST_DESCRIPTION_FAILURE,
+      ],
+      callAPI: () => podcastService.getPodcastDescription(id),
+    };
+
+    dispatch({
+      type: ASYNC_ACTION_TYPE,
+      payload: {},
+      meta: candidatesMeta,
+    });
+  };
+
+  return { getPodcast, getPodcastDescription };
 }
