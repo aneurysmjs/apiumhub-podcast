@@ -5,6 +5,12 @@ export const [GET_PODCAST_REQUEST, GET_PODCAST_SUCCESS, GET_PODCAST_FAILURE] = g
   'GET',
 );
 
+export const [
+  GET_PODCAST_DESCRIPTION_REQUEST,
+  GET_PODCAST_DESCRIPTION_SUCCESS,
+  GET_PODCAST_DESCRIPTION_FAILURE,
+] = generateApiActions('podcastDescription', 'GET');
+
 export interface Label {
   label: string;
 }
@@ -99,15 +105,59 @@ export interface PodcastEpisode {
   wrapperType: string;
 }
 
+export interface PodcastDescription {
+  artistId: number;
+  artistName: string;
+  artistViewUrl: string;
+  artworkUrl100: string;
+  artworkUrl30: string;
+  artworkUrl60: string;
+  artworkUrl600: string;
+  collectionCensoredName: string;
+  collectionExplicitness: string;
+  collectionHdPrice: number;
+  collectionId: number;
+  collectionName: string;
+  collectionPrice: number;
+  collectionViewUrl: string;
+  contentAdvisoryRating: string;
+  country: string;
+  currency: string;
+  feedUrl: string;
+  genreIds: string[];
+  genres: string[];
+  kind: string;
+  primaryGenreName: string;
+  releaseDate: string;
+  trackCensoredName: string;
+  trackCount: number;
+  trackExplicitness: string;
+  trackId: number;
+  trackName: string;
+  trackPrice: number;
+  trackTimeMillis: number;
+  trackViewUrl: string;
+  wrapperType: string;
+}
+
 export interface PodcastResponse {
   feed: {
     entry: Podcast[];
   };
 }
 
+export interface PodcastDescriptionResponse {
+  resultCount: number;
+  results: [PodcastDescription, ...PodcastEpisode[]];
+}
+
 export interface PodcastState {
   podcastList: {
     [K: string]: Podcast;
+  };
+  podcastDescription: PodcastDescription;
+  podcastEpisodes: {
+    [K: string]: PodcastEpisode;
   };
 }
 
@@ -124,4 +174,23 @@ interface GetPodcastFailure {
   type: typeof GET_PODCAST_FAILURE;
 }
 
-export type PodcastActions = GetPodcastRequest | GetPodcastSuccess | GetPodcastFailure;
+interface GetPodcastDescriptionRequest {
+  type: typeof GET_PODCAST_DESCRIPTION_REQUEST;
+}
+
+interface GetPodcastDescriptionSuccess {
+  type: typeof GET_PODCAST_DESCRIPTION_SUCCESS;
+  payload: PodcastDescriptionResponse;
+}
+
+interface GetPodcastDescriptionFailure {
+  type: typeof GET_PODCAST_DESCRIPTION_FAILURE;
+}
+
+export type PodcastActions =
+  | GetPodcastRequest
+  | GetPodcastSuccess
+  | GetPodcastFailure
+  | GetPodcastDescriptionRequest
+  | GetPodcastDescriptionSuccess
+  | GetPodcastDescriptionFailure;
