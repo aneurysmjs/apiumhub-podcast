@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
 import * as podcastService from '@/services/podcastService';
@@ -9,7 +10,7 @@ import { GET_PODCAST_REQUEST, GET_PODCAST_SUCCESS, GET_PODCAST_FAILURE } from '.
 export function usePodcastActions() {
   const dispatch = useDispatch();
 
-  const getPodcast = () => {
+  const getPodcast = useCallback(() => {
     const candidatesMeta: ApiMetaType = {
       types: [GET_PODCAST_REQUEST, GET_PODCAST_SUCCESS, GET_PODCAST_FAILURE],
       callAPI: () => podcastService.getPodcast(),
@@ -20,7 +21,7 @@ export function usePodcastActions() {
       payload: {},
       meta: candidatesMeta,
     });
-  };
+  }, [dispatch]);
 
   return { getPodcast };
 }

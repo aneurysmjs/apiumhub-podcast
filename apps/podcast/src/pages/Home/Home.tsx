@@ -7,7 +7,6 @@ import { loadingSelector } from '@/store/helpers/selectors';
 import { usePodcastActions } from '@/store/modules/podcast/actions';
 import PodcastItem from '@/pages/Home/components/PodcastItem';
 import { selectPodcast } from '@/store/modules/podcast/selectors';
-
 import { useFilterable, useDebounce } from '@apiumhub/hooks';
 import { Podcast } from '@/store/modules/podcast/types';
 
@@ -26,7 +25,7 @@ const Home: FunctionComponent = () => {
 
   useEffect(() => {
     getPodcast();
-  }, []);
+  }, [getPodcast]);
 
   const handleKeydown = useDebounce<ChangeEvent<HTMLInputElement>>((evt) => {
     if (evt) {
