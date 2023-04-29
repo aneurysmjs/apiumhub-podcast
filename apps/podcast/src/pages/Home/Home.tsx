@@ -9,6 +9,7 @@ import PodcastItem from '@/pages/Home/components/PodcastItem';
 import { selectPodcast } from '@/store/modules/podcast/selectors';
 import { useFilterable, useDebounce } from '@apiumhub/hooks';
 import { Podcast } from '@/store/modules/podcast/types';
+import useExpiration from '@/hooks/useExpiration';
 
 import './Home.css';
 
@@ -26,6 +27,8 @@ const Home: FunctionComponent = () => {
   useEffect(() => {
     getPodcast();
   }, [getPodcast]);
+
+  useExpiration(new Date().toISOString(), getPodcast);
 
   const handleKeydown = useDebounce<ChangeEvent<HTMLInputElement>>((evt) => {
     if (evt) {
