@@ -5,3 +5,30 @@
 .home__content {
   @apply w-full md:w-9/12 mx-auto px-4 md:px-0;
 }
+
+.home__podcasts-list {
+  @apply flex flex-wrap gap-6 flex-col items-center justify-around;
+
+  @media screen(lg) {
+    @apply flex-wrap flex-row;
+  }
+}
+
+.home__podcasts-search {
+  @apply flex justify-center lg:justify-end mb-8 lg:mb-4;
+}
+
+.home__input-search {
+  @apply text-theme form-input mx-2 rounded w-full lg:w-60;
+
+  @apply bg-white dark:bg-slate-800;
+  @apply placeholder:text-gray-800 dark:placeholder:text-gray-300;
+
+  @apply focus:border-teal-400 dark:focus:border-sky-400;
+  @apply focus:ring-teal-400 dark:focus:ring-sky-400;
+}
+
+.home__no-results {
+  @apply mt-4 text-theme text-center;
+  padding-top: 25%;
+}

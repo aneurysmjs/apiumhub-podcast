@@ -1,0 +1,18 @@
+.podcast-item {
+  @apply w-full lg:w-60 p-4 hover:cursor-pointer self-stretch;
+  @apply md:shadow-lg dark:md:shadow-none;
+  @apply bg-white dark:bg-gray-800 hover:dark:bg-gray-700;
+}
+
+.podcast-item__img {
+  @apply rounded-full mx-auto mb-2;
+}
+
+.podcast-item__title {
+  @apply text-theme text-center font-bold text-lg;
+}
+
+.podcast-item__description {
+  @apply text-center;
+  @apply text-gray-500 dark:text-gray-400;
+}
