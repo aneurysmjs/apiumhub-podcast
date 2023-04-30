@@ -1,0 +1,25 @@
+.image-skeleton {
+  @apply w-full h-0 relative overflow-hidden rounded-sm;
+  padding-bottom: 100%;
+}
+
+.image-skeleton__image {
+  @apply absolute top-0 left-0 w-full h-full;
+
+  background-color: #eaeaea;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

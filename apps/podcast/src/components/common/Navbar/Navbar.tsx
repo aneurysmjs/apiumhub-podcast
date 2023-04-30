@@ -9,6 +9,9 @@ import classNames from 'classnames';
 import useTheme from '@/hooks/useTheme';
 import Switch from '@/components/common/Switch';
 import LangsDropdown from '@/components/common/LangsDropdown';
+import Loader from '@/components/common/Loader';
+import { useAppSelector } from '@/store/hooks';
+import { loadingSelector } from '@/store/helpers/selectors';
 
 import './Navbar.css';
 
@@ -28,6 +31,7 @@ const Navbar: FunctionComponent = () => {
   const { t } = useTranslation();
   const [theme, toggleTheme] = useTheme();
   const [isOpen, setOpen] = useState(false);
+  const isLoading = useAppSelector(loadingSelector(['GET_PODCAST']));
 
   const handleNavLinkClick = () => {
     setOpen(false);
@@ -81,6 +85,7 @@ const Navbar: FunctionComponent = () => {
             ))}
           </nav>
         </div>
+        {isLoading ? <span className="navbar__loader">{<Loader />}</span> : null}
       </div>
     </div>
   );

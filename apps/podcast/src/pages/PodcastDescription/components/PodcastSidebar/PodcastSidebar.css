@@ -1,9 +1,7 @@
 .podcast-sidebar {
   @apply text-theme p-4 self-start;
   @apply w-full lg:w-80;
-
   @apply bg-white dark:bg-gray-800;
-
   @apply shadow-md dark:shadow-none;
 }
 
