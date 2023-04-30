@@ -1,6 +1,13 @@
-import { type FunctionComponent, type ChangeEvent, useEffect, useState } from 'react';
+import {
+  type FunctionComponent,
+  type ChangeEvent,
+  type MouseEvent,
+  useEffect,
+  useState,
+} from 'react';
 import { useTranslation } from 'react-i18next';
 import isEmpty from 'ramda/src/isEmpty';
+import { useNavigate } from 'react-router-dom';
 
 import { useAppSelector } from '@/store/hooks';
 import { loadingSelector } from '@/store/helpers/selectors';
@@ -16,6 +23,18 @@ import './Home.css';
 const searchByTitle = (item: Podcast, filterVal: string) =>
   item.title.label.toLowerCase().includes(filterVal.toLowerCase());
 
+const getPodcastId = <T extends HTMLElement>(el: T | null): string | null => {
+  if (el === null) {
+    return null;
+  }
+
+  if (el?.dataset?.podcastId) {
+    return el?.dataset.podcastId;
+  }
+
+  return getPodcastId(el.parentElement);
+};
+
 const Home: FunctionComponent = () => {
   const { t } = useTranslation();
   const { getPodcast } = usePodcastActions();
@@ -23,6 +42,7 @@ const Home: FunctionComponent = () => {
   const [search, setSearch] = useState('');
   const filteredPodcast = useFilterable(podcast, search, searchByTitle);
   const isLoading = useAppSelector(loadingSelector(['GET_PODCAST']));
+  const navigate = useNavigate();
 
   useEffect(() => {
     getPodcast();
@@ -30,13 +50,23 @@ const Home: FunctionComponent = () => {
 
   useExpiration(new Date().toISOString(), getPodcast);
 
-  const handleKeydown = useDebounce<ChangeEvent<HTMLInputElement>>((evt) => {
+  const handleChange = useDebounce<ChangeEvent<HTMLInputElement>>((evt) => {
     if (evt) {
       const { value } = evt.target as HTMLInputElement;
 
       setSearch(value);
     }
   });
+
+  const handleClick = (evt: MouseEvent<HTMLDivElement>) => {
+    const target = evt.target as HTMLDivElement;
+
+    const id = getPodcastId(target);
+
+    if (id) {
+      navigate(`podcast/${id}`);
+    }
+  };
 
   const shouldDisplayNoResultsText = isLoading === false && search && isEmpty(filteredPodcast);
 
@@ -48,11 +78,11 @@ const Home: FunctionComponent = () => {
             data-testid="input-search"
             placeholder="filter by"
             className="home__input-search"
-            onChange={handleKeydown}
+            onChange={handleChange}
           />
         </div>
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
-        <div className="home__podcasts-list">
+        <div className="home__podcasts-list" onClick={handleClick}>
           {filteredPodcast.map((podcastItem) => (
             <PodcastItem key={podcastItem.id.attributes['im:id']} podcast={podcastItem} />
           ))}

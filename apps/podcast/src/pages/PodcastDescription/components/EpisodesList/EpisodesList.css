@@ -1,0 +1,77 @@
+.episode-list__controls {
+  @apply mb-4 flex items-center;
+}
+
+.episode-list__title {
+  @apply text-theme ml-4;
+}
+
+.table {
+  @apply font-light 
+  min-w-full
+  table-auto
+  text-left 
+  text-sm
+  relative;
+}
+
+.table__icon {
+  @apply ml-2 text-theme-hover;
+}
+
+.table--zebra tbody {
+  tr:nth-child(even) {
+    th,
+    td {
+      @apply bg-gray-100 dark:bg-slate-800;
+    }
+  }
+}
+
+.table__head {
+  @apply border-b font-medium dark:border-slate-700;
+  @apply bg-gray-200 dark:bg-gray-800;
+}
+
+.table__th {
+  @apply px-6 py-4;
+  @apply text-theme;
+}
+
+.table__sticky-header {
+  @apply sticky top-0;
+}
+
+.table__tr {
+  @apply text-theme;
+
+  @apply border-b dark:border-neutral-600;
+  @apply bg-white dark:bg-gray-900;
+}
+
+.table__td {
+  @apply px-6 py-4 whitespace-nowrap;
+}
+
+.table__td--bold {
+  @apply table__td font-medium;
+}
+
+.table__spinner-container {
+  @apply text-center;
+}
+
+.table__spinner {
+  animation: spin infinite 3s linear;
+  @apply text-theme mt-4;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

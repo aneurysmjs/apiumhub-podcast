@@ -1,0 +1,25 @@
+.podcast-description {
+  @apply my-8;
+}
+
+.podcast-description__wrapper {
+  @apply flex flex-col mx-auto;
+  @apply w-full lg:w-8/12;
+}
+
+.podcast-description__controls {
+  @apply mb-8;
+}
+
+.podcast-description__content {
+  @apply flex justify-between;
+  @apply flex-col lg:flex-row;
+}
+
+.podcast-description__outlet {
+  @apply w-full;
+
+  @media screen(lg) {
+    width: 48rem;
+  }
+}
