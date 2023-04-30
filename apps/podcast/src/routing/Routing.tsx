@@ -8,6 +8,7 @@ const PageLoader = () => <div>Loading...</div>;
 
 const PodcastDescription = lazy(() => import('@/pages/PodcastDescription'));
 const EpisodesList = lazy(() => import('@/pages/PodcastDescription/components/EpisodesList'));
+const PodcastEpisode = lazy(() => import('@/pages/PodcastDescription/components/PodcastEpisode'));
 
 const Routing: FunctionComponent = () => (
   <Router>
@@ -27,6 +28,14 @@ const Routing: FunctionComponent = () => (
             element={
               <Suspense fallback={<PageLoader />}>
                 <EpisodesList />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/podcast/:id/episode/:episodeId"
+            element={
+              <Suspense fallback={<PageLoader />}>
+                <PodcastEpisode />
               </Suspense>
             }
           />

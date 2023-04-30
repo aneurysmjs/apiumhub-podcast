@@ -1,0 +1,13 @@
+.podcast-episode {
+  @apply text-theme p-8;
+  @apply bg-white dark:bg-gray-800;
+  @apply shadow-md dark:shadow-none;
+}
+
+.podcast-episode__title {
+  @apply text-xl mb-8;
+}
+
+.podcast-episode__player {
+  @apply w-full mt-8;
+}

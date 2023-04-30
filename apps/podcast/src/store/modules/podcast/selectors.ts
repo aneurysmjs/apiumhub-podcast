@@ -18,3 +18,13 @@ export const selectPodcastEpisodes = (state: RootState) => {
 
   return Object.values(podcastEpisodes);
 };
+
+export const selectPodcastEpisodeById = (id: string) => (state: RootState) => {
+  const { podcastEpisodes } = state.podcast;
+
+  if (isNil(podcastEpisodes)) {
+    return {};
+  }
+
+  return state.podcast.podcastEpisodes[id];
+};

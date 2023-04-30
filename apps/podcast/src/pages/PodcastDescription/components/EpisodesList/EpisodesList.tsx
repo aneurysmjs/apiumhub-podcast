@@ -1,5 +1,6 @@
 import { type FunctionComponent } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { formatMilliseconds } from '@apiumhub/utils';
 import { useAppSelector } from '@/store/hooks';
@@ -10,7 +11,15 @@ import './EpisodesList.css';
 
 const EpisodesList: FunctionComponent = () => {
   const { t } = useTranslation();
+  const { id } = useParams();
   const episodes = useAppSelector(selectPodcastEpisodes);
+  const navigate = useNavigate();
+
+  const handleClick = (trackId: number) => {
+    if (id) {
+      navigate(`episode/${trackId}`);
+    }
+  };
 
   return (
     <div className="episode-list">
@@ -31,7 +40,12 @@ const EpisodesList: FunctionComponent = () => {
         </thead>
         <tbody>
           {episodes.map((episode) => (
-            <tr key={episode.trackId} className="table__tr cursor-pointer" data-testid="table-row">
+            <tr
+              key={episode.trackId}
+              data-testid="table-row"
+              className="table__tr cursor-pointer"
+              onClick={() => handleClick(episode.trackId)}
+            >
               <td className="table__td">{episode.trackName}</td>
               <td className="table__td">{formatReleaseDate(episode.releaseDate)}</td>
               <td className="table__td">{formatMilliseconds(episode.trackTimeMillis)}</td>
